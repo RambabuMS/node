@@ -2,6 +2,7 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import cors from "cors";
+import { ObjectId } from "mongodb";
 dotenv.config();
 
 const app = express();
@@ -100,7 +101,7 @@ app.get("/players/:id", async function (request, response) {
   const player = await client
     .db("b30wd")
     .collection("players")
-    .findOne({ id: id });
+    .findOne({ _id: ObjectId(id) });
 
   player
     ? response.send(player)
@@ -114,7 +115,7 @@ app.put("/players/:id", async function (request, response) {
   const player = await client
     .db("b30wd")
     .collection("players")
-    .updateOne({ id: id }, { $set: Updatedplayer });
+    .updateOne({ _id: ObjectId(id) }, { $set: Updatedplayer });
   response.send(player);
 });
 
@@ -124,7 +125,7 @@ app.delete("/players/:id", async function (request, response) {
   const result = await client
     .db("b30wd")
     .collection("players")
-    .deleteOne({ id: id });
+    .deleteOne({ _id: ObjectId(id) });
   response.send(result);
 });
 
