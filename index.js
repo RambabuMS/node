@@ -3,7 +3,6 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
-app.use(cors());
 
 const app = express();
 
@@ -61,7 +60,7 @@ console.log(process.env.MONGO_URL);
 // ];
 
 app.use(express.json());
-
+app.use(cors());
 const MONGO_URL = process.env.MONGO_URL;
 
 async function createConnection() {
