@@ -1,7 +1,9 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
+app.use(cors());
 
 const app = express();
 
